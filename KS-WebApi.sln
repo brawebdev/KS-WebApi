@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2047
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KS.API", "KS.API\KS.API.csproj", "{09D6E37F-5E51-44A8-A327-7CB039E0C813}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{09D6E37F-5E51-44A8-A327-7CB039E0C813}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09D6E37F-5E51-44A8-A327-7CB039E0C813}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09D6E37F-5E51-44A8-A327-7CB039E0C813}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09D6E37F-5E51-44A8-A327-7CB039E0C813}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {783890DB-6EF8-4332-A37E-3E81C5EB9D34}
+	EndGlobalSection
+EndGlobal
