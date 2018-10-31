@@ -28,9 +28,10 @@ namespace KS.API.Controllers.Authorization
         {
             loginRequest.UserName = loginRequest.UserName.ToLower();
             var dto = _mapper.Map<QueryForExistingUserDTO>(loginRequest);
-            await _loginManager.LoginUser(dto);
+            var receivedExistingUserDTO = await _loginManager.LoginUser(dto);
+            var token = _loginManager.GenerateTokenForUser(receivedExistingUserDTO);
 
-            return StatusCode(200);
+            return Ok(new {token, receivedExistingUserDTO});
         }
     }
 }

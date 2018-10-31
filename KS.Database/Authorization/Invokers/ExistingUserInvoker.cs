@@ -16,7 +16,7 @@ namespace KS.Database.Authorization.Invokers
             _command = command;
         }
 
-        public async Task<ReceivedExistingUserDTO> InvokeLoginCommand(QueryForExistingUserRAO userRAO)
+        public async Task<ReceivedExistingUserRAO> InvokeLoginCommand(QueryForExistingUserRAO userRAO)
         {
             return await _command.Execute(userRAO);
         }

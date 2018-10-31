@@ -22,15 +22,15 @@ namespace KS.Database.Authorization.Receivers
             _mapper = mapper;
         }
 
-        public async Task<ReceivedExistingUserDTO> GetExistingUser(QueryForExistingUserRAO userRAO)
+        public async Task<ReceivedExistingUserRAO> GetExistingUser(QueryForExistingUserRAO userRAO)
         {
-           var entity =
+           var userEntity =
                await
                 _context
                     .UserTableAccess
                     .FirstOrDefaultAsync(x => x.UserName == userRAO.Username);
 
-            var loginRAO = _mapper.Map<ReceivedExistingUserDTO>(entity);
+            var loginRAO = _mapper.Map<ReceivedExistingUserRAO>(userEntity);
 
             return loginRAO;
         }

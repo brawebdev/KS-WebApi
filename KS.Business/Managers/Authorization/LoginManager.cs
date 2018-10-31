@@ -2,6 +2,7 @@
 using KS.Business.DataContract.Authorization;
 using KS.Business.Engines.Authorization;
 using KS.Database.DataContract.Authorization;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,11 +14,13 @@ namespace KS.Business.Managers.Authorization
     {
         private readonly IExistingUserInvoker _loginInvoker;
         private readonly IMapper _mapper;
+        private readonly IConfiguration _configuration;
 
-        public LoginManager(IExistingUserInvoker loginInvoker, IMapper mapper)
+        public LoginManager(IExistingUserInvoker loginInvoker, IMapper mapper, IConfiguration configuration)
         {
             _loginInvoker = loginInvoker;
             _mapper = mapper;
+            _configuration = configuration;
         }
 
         public async Task<ReceivedExistingUserDTO> LoginUser(QueryForExistingUserDTO userDTO)
@@ -40,7 +43,9 @@ namespace KS.Business.Managers.Authorization
 
         public string GenerateTokenForUser(ReceivedExistingUserDTO receivedExistingUserDTO)
         {
-            throw new NotImplementedException();
+            var tokenEngine = new GenerateTokenEngine(_configuration);
+            var token = tokenEngine.GenerateTokenString(receivedExistingUserDTO);
+            return token;
         }
     }
 }

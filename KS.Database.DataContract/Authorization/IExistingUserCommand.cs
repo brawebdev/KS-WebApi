@@ -8,6 +8,6 @@ namespace KS.Database.DataContract.Authorization
 {
     public interface IExistingUserCommand
     {
-        Task<ReceivedExistingUserDTO> Execute(QueryForExistingUserRAO userRAO);
+        Task<ReceivedExistingUserRAO> Execute(QueryForExistingUserRAO userRAO);
     }
 }

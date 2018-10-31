@@ -16,7 +16,7 @@ namespace KS.Database.Authorization.Commands
             _receiver = receiver;
         }
 
-        public async Task<ReceivedExistingUserDTO> Execute(QueryForExistingUserRAO userRAO)
+        public async Task<ReceivedExistingUserRAO> Execute(QueryForExistingUserRAO userRAO)
         {
             return await _receiver.GetExistingUser(userRAO);
         }

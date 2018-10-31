@@ -8,6 +8,6 @@ namespace KS.Database.DataContract.Authorization
 {
     public interface IExistingUserReceiver
     {
-        Task<ReceivedExistingUserDTO> GetExistingUser(QueryForExistingUserRAO userRAO);
+        Task<ReceivedExistingUserRAO> GetExistingUser(QueryForExistingUserRAO userRAO);
     }
 }
