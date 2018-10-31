@@ -7,7 +7,9 @@ using KS.Business.DataContract.Authorization;
 using KS.Business.Managers.Authorization;
 using KS.Database.Authorization.Commands;
 using KS.Database.Authorization.Invoker;
+using KS.Database.Authorization.Invokers;
 using KS.Database.Authorization.Receiver;
+using KS.Database.Authorization.Receivers;
 using KS.Database.Contexts;
 using KS.Database.DataContract.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -44,11 +46,17 @@ namespace KS.API
 
             services.AddDbContext<KSContext>(
                 x => x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddScoped<IRegisterUserManager, RegisterUserManager>();
             services.AddScoped<IAuthorizationCommand, RegisterUserCreateCommand>();
             services.AddScoped<IUserRegisterInvoker, RegisterUserCreateInvoker>();
             services.AddScoped<IAuthorizationReceiver, RegisterUserCreateReceiver>();
+
+            services.AddScoped<ILoginManager, LoginManager>();
+            services.AddScoped<IExistingUserCommand, ExistingUserCommand>();
+            services.AddScoped<IExistingUserReceiver, ExistingUserReceiver>();
+            services.AddScoped<IExistingUserInvoker, ExistingUserInvoker>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
