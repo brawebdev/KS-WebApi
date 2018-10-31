@@ -20,11 +20,11 @@ namespace KS.API
             CreateMap<UserRegisterRAO, UserEntity>();
 
             //Login
-            CreateMap<LoginRequest, ExistingUserDTO>();
-            CreateMap<ExistingUserDTO, ExistingUserRAO>();
-            CreateMap<ExistingUserRAO, UserEntity>();
-            CreateMap<UserEntity, DBExistingUserRAO>();
-            CreateMap<DBExistingUserRAO, DBExistingUserDTO>();
+            CreateMap<LoginRequest, QueryForExistingUserDTO>();
+            CreateMap<QueryForExistingUserDTO, QueryForExistingUserRAO>();
+            CreateMap<QueryForExistingUserRAO, UserEntity>();
+            CreateMap<UserEntity, ReceivedExistingUserRAO>();
+            CreateMap<ReceivedExistingUserRAO, ReceivedExistingUserDTO>();
         }
     }
 }

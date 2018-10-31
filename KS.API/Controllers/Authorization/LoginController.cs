@@ -27,7 +27,7 @@ namespace KS.API.Controllers.Authorization
         public async Task<IActionResult> Login([FromBody] LoginRequest loginRequest)
         {
             loginRequest.UserName = loginRequest.UserName.ToLower();
-            var dto = _mapper.Map<ExistingUserDTO>(loginRequest);
+            var dto = _mapper.Map<QueryForExistingUserDTO>(loginRequest);
             await _loginManager.LoginUser(dto);
 
             return StatusCode(200);

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace KS.Database.DataContract.Authorization
 {
-    public class ExistingUserRAO
+    public class ReceivedExistingUserRAO
     {
         public string Username { get; set; }
         public byte[] PasswordHash { get; set; }

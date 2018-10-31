@@ -4,7 +4,7 @@ using System.Text;
 
 namespace KS.Business.DataContract.Authorization
 {
-    public class DBExistingUserDTO
+    public class ReceivedExistingUserDTO
     {
         public string Username { get; set; }
         public byte[] PasswordHash { get; set; }

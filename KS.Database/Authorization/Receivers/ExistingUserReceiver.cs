@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using KS.Business.DataContract.Authorization;
 using KS.Database.Contexts;
 using KS.Database.DataContract.Authorization;
 using Microsoft.EntityFrameworkCore;
@@ -21,7 +22,7 @@ namespace KS.Database.Authorization.Receivers
             _mapper = mapper;
         }
 
-        public async Task<DBExistingUserRAO> GetExistingUser(ExistingUserRAO userRAO)
+        public async Task<ReceivedExistingUserDTO> GetExistingUser(QueryForExistingUserRAO userRAO)
         {
            var entity =
                await
@@ -29,7 +30,7 @@ namespace KS.Database.Authorization.Receivers
                     .UserTableAccess
                     .FirstOrDefaultAsync(x => x.UserName == userRAO.Username);
 
-            var loginRAO = _mapper.Map<DBExistingUserRAO>(entity);
+            var loginRAO = _mapper.Map<ReceivedExistingUserDTO>(entity);
 
             return loginRAO;
         }

@@ -1,4 +1,5 @@
-﻿using KS.Database.DataContract.Authorization;
+﻿using KS.Business.DataContract.Authorization;
+using KS.Database.DataContract.Authorization;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,7 +16,7 @@ namespace KS.Database.Authorization.Commands
             _receiver = receiver;
         }
 
-        public async Task<DBExistingUserRAO> Execute(ExistingUserRAO userRAO)
+        public async Task<ReceivedExistingUserDTO> Execute(QueryForExistingUserRAO userRAO)
         {
             return await _receiver.GetExistingUser(userRAO);
         }

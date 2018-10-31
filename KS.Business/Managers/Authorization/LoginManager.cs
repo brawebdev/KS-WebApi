@@ -20,22 +20,27 @@ namespace KS.Business.Managers.Authorization
             _mapper = mapper;
         }
 
-        public async Task<string> LoginUser(ExistingUserDTO userDTO)
+        public async Task<ReceivedExistingUserDTO> LoginUser(QueryForExistingUserDTO userDTO)
         {
-            var rao = PrepareRAOForLogin(userDTO);
-            await _loginInvoker.InvokeLoginCommand(rao);
+            var rao = _mapper.Map<QueryForExistingUserRAO>(userDTO);
+            var queryForRAO = _mapper.Map<QueryForExistingUserRAO>(userDTO);
 
-            return string.Empty;
+            var received = await _loginInvoker.InvokeLoginCommand(queryForRAO);
+
+            var verifyPasswordEngine = new VerifyPasswordHashEngine();
+            var passwordsMatch = verifyPasswordEngine.VerifyPasswordHash(userDTO.Password, received.PasswordHash, received.PasswordSalt);
+
+            if (passwordsMatch)
+            {
+                return _mapper.Map<ReceivedExistingUserDTO>(received);
+            }
+            else
+                throw new Exception("Passwords do not match!");
         }
 
-        private ExistingUserRAO PrepareRAOForLogin(ExistingUserDTO userDTO)
+        public string GenerateTokenForUser(ReceivedExistingUserDTO receivedExistingUserDTO)
         {
-            var rao = _mapper.Map<ExistingUserRAO>(userDTO);
-
-            //var verifyPasswordHashEngine = new VerifyPasswordHashEngine();
-            //var result = verifyPasswordHashEngine.VerifyPasswordHash(userDTO.Password, rao.PasswordHash, rao.PasswordSalt);
-
-            return rao;
+            throw new NotImplementedException();
         }
     }
 }
