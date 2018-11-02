@@ -23,6 +23,7 @@ namespace KS.API.Controllers.Authorization
         {
             _registerUserManager = registerUserManager;
             _mapper = mapper;
+
         }
 
         [HttpPost("RegisterUser")]

@@ -4,7 +4,9 @@ using KS.API.Controllers.Authorization;
 using KS.API.DataContract.Authorization;
 using KS.Business.DataContract.Authorization;
 using KS.Business.MockManagers.Authorization;
+using KS.Database.Entities;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Net;
 using System.Threading.Tasks;
@@ -46,11 +48,10 @@ namespace KS.UnitTests
         {
             var userRequest = new NewUserCreateRequest { UserName = "Ben", Password = "Stuff" };
 
-            var actual = _controller.Register(userRequest).Result;
+            var actual = (StatusCodeResult)_controller.Register(userRequest).Result;
             var expected = (int)HttpStatusCode.Created;
-  
 
-            Assert.AreEqual<HttpStatusCode>(expected, actual);
+            Assert.AreEqual(expected, actual.StatusCode);
         }
     }
 }
