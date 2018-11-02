@@ -31,10 +31,13 @@ namespace KS.API.Controllers.Authorization
         {
             userForRegister.UserName = userForRegister.UserName.ToLower();
             var dto = _mapper.Map<NewUserCreateDTO>(userForRegister);
-            await _registerUserManager.RegisterUser(dto);
+            var UserIsRegistered = await _registerUserManager.RegisterUser(dto);
 
             //201 == Created
-            return StatusCode(201);
+            if (UserIsRegistered)
+                return StatusCode(201);
+            else
+                return StatusCode(409);
         }
     }
 }
